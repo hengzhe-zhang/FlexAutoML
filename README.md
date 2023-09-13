@@ -1,8 +1,8 @@
-# Machine Learning Toolbox 🛠️
+# FlexAutoML 🛠️
 
-Machine Learning Toolbox is a comprehensive, end-to-end solution for your machine learning pipeline tasks. Unlike
-traditional AutoML tools, which can often be a black box, our toolbox offers greater flexibility by allowing users to
-freely combine various machine learning functions according to their needs.
+FlexAutoML is a comprehensive, end-to-end solution designed to streamline your machine learning pipeline tasks. Unlike
+traditional AutoML tools, which can often act as a "black box," FlexAutoML offers unparalleled flexibility. This enables
+users to combine various machine learning functions according to their specific needs.
 
 ## Unique Selling Points 🎯
 
@@ -35,5 +35,5 @@ You can mix and match various preprocessing and machine learning algorithms to t
 ## How to Install 📦
 
 ```bash
-pip install ml-toolbox
+pip install FlexAutoML
 ```
