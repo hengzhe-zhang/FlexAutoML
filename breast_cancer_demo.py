@@ -12,7 +12,7 @@ from machine_learning.hyper_parameter_optimization import objective_catboost, ob
     hyperparameter_optimization
 
 if __name__ == '__main__':
-    # Load the Breast Cancer dataset (assuming 'breast_cancer' is already imported)
+    # Load the Breast Cancer dataset
     breast_cancer = load_breast_cancer()
     X = pd.DataFrame(breast_cancer.data, columns=breast_cancer.feature_names)
     y = breast_cancer.target
