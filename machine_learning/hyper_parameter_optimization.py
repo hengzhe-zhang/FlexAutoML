@@ -9,11 +9,11 @@ from sklearn.model_selection import cross_val_score
 def objective_catboost(trial, X, y, scoring='f1_micro'):
     # Hyperparameter settings for CatBoost
     catboost_params = {
-        'n_estimators': trial.suggest_int('n_estimators', 50, 200),
+        'n_estimators': trial.suggest_int('n_estimators', 50, 1000),
         'learning_rate': trial.suggest_float('learning_rate', 0.01, 0.2),
         'depth': trial.suggest_int('depth', 3, 9),
         'l2_leaf_reg': trial.suggest_float('l2_leaf_reg', 1, 10),
-        'min_child_samples': trial.suggest_int('min_child_samples', 1, 10),
+        'min_child_samples': trial.suggest_int('min_child_samples', 1, 100),
     }
 
     # Initialize CatBoost classifier with the suggested hyperparameters
@@ -30,7 +30,7 @@ def objective_catboost(trial, X, y, scoring='f1_micro'):
 def objective_lgbm(trial, X, y, scoring='f1_micro'):
     # Hyperparameter settings for LightGBM
     params = {
-        'n_estimators': trial.suggest_int('n_estimators', 50, 200),
+        'n_estimators': trial.suggest_int('n_estimators', 50, 1000),
         'learning_rate': trial.suggest_float('learning_rate', 0.01, 0.2),
         'max_depth': trial.suggest_int('max_depth', 3, 9),
         'num_leaves': trial.suggest_int('num_leaves', 31, 120),
