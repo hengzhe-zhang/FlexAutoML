@@ -5,6 +5,7 @@ import pandas as pd
 from category_encoders import OneHotEncoder, BinaryEncoder
 from category_encoders.ordinal import OrdinalEncoder
 from category_encoders.utils import BaseEncoder
+from sklearn.preprocessing import LabelEncoder
 
 from data_preprocessing.utils import check_column_mismatch
 
@@ -57,3 +58,10 @@ def categorical_encoding(df_train, df_test, cat_columns, encoding_method: Union[
         return df_train, df_test
     else:
         return df_train
+
+
+def ordinal_encoding(train_df, test_df, feature):
+    encoder = LabelEncoder()
+    encoder.fit(train_df[feature])
+    train_df[feature] = encoder.transform(train_df[feature])
+    test_df[feature] = encoder.transform(test_df[feature])

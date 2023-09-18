@@ -5,6 +5,8 @@ from lightgbm import LGBMClassifier
 from sklearn.metrics import f1_score
 from sklearn.model_selection import KFold
 
+from machine_learning.auto_valid_lightgbm import AutoValidLGBMClassifier
+
 
 def train_model(X, y, lgbm_best_params=None, catboost_best_params=None):
     if lgbm_best_params is None and catboost_best_params is None:
@@ -25,7 +27,7 @@ def train_model(X, y, lgbm_best_params=None, catboost_best_params=None):
 
         if lgbm_best_params is not None:
             # Initialize and train LightGBM classifier with best parameters
-            lgbm_clf = LGBMClassifier(**lgbm_best_params, random_state=1)
+            lgbm_clf = AutoValidLGBMClassifier(**lgbm_best_params, random_state=1)
             lgbm_clf.fit(X_train, y_train)
         else:
             lgbm_clf = None
