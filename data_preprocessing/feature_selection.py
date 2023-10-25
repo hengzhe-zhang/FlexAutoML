@@ -7,14 +7,21 @@ from lightgbm import LGBMClassifier
 from data_preprocessing.utils import check_column_mismatch
 
 
-def feature_selection_lgbm(X_train: Union[np.ndarray, pd.DataFrame],
-                           y_train: Union[np.ndarray, pd.DataFrame],
-                           X_test: Union[np.ndarray, pd.DataFrame],
-                           percentage_total_weight=0.95):
+def feature_selection_lgbm(
+    X_train: Union[np.ndarray, pd.DataFrame],
+    y_train: Union[np.ndarray, pd.DataFrame],
+    X_test: Union[np.ndarray, pd.DataFrame],
+    percentage_total_weight=0.95,
+):
     check_column_mismatch(X_train, X_test)
 
-    best_params = {'learning_rate': 0.2, 'max_depth': 3, 'min_child_samples': 5,
-                   'n_estimators': 50, 'num_leaves': 31}
+    best_params = {
+        "learning_rate": 0.2,
+        "max_depth": 3,
+        "min_child_samples": 5,
+        "n_estimators": 50,
+        "num_leaves": 31,
+    }
     # Create a LightGBM classifier
     lgb_model = LGBMClassifier(**best_params)
 
@@ -53,5 +60,10 @@ def feature_selection_lgbm(X_train: Union[np.ndarray, pd.DataFrame],
         X_test_selected = X_test[:, selected_feature_indices]
     num_selected_features = len(selected_feature_indices)
     num_total_features = X_train.shape[1]
-    print('num_selected_features', num_selected_features, 'num_total_features', num_total_features)
+    print(
+        "num_selected_features",
+        num_selected_features,
+        "num_total_features",
+        num_total_features,
+    )
     return X_train_selected, X_test_selected

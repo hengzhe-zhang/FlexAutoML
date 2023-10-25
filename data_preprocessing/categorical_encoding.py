@@ -37,13 +37,18 @@ def infer_categorical_features(X_train, X_test=None, threshold=10):
     return categorical_features
 
 
-def categorical_encoding(df_train, df_test, cat_columns, encoding_method: Union[str, BaseEncoder] = OneHotEncoder):
+def categorical_encoding(
+    df_train,
+    df_test,
+    cat_columns,
+    encoding_method: Union[str, BaseEncoder] = OneHotEncoder,
+):
     check_column_mismatch(df_train, df_test)
 
-    if encoding_method == 'OneHotEncoder':
+    if encoding_method == "OneHotEncoder":
         # Perform label encoding on categorical columns
         label_encoder = OneHotEncoder(cols=cat_columns)
-    elif encoding_method == 'BinaryEncoder':
+    elif encoding_method == "BinaryEncoder":
         # Perform label encoding on categorical columns
         label_encoder = BinaryEncoder(cols=cat_columns)
     elif inspect.isclass(BaseEncoder):

@@ -25,10 +25,18 @@ class NoiseDataCleaner:
                 y_train, y_val = self.y[train_index], self.y[val_index]
 
             # Define and train the LightGBM model using Scikit-learn API
-            model = LGBMClassifier(objective='binary', metric='auc', boosting_type='gbdt')
-            model.fit(X_train, y_train, eval_set=[(X_val, y_val)],
-                      callbacks=[early_stopping(stopping_rounds=10),
-                                 log_evaluation(period=0)])
+            model = LGBMClassifier(
+                objective="binary", metric="auc", boosting_type="gbdt"
+            )
+            model.fit(
+                X_train,
+                y_train,
+                eval_set=[(X_val, y_val)],
+                callbacks=[
+                    early_stopping(stopping_rounds=10),
+                    log_evaluation(period=0),
+                ],
+            )
 
             y_pred = model.predict_proba(X_val)[:, 1]
             auc = roc_auc_score(y_val, y_pred)
@@ -46,7 +54,9 @@ class NoiseDataCleaner:
 
         for i, auc in enumerate(auc_list):
             if not lower_bound <= auc <= upper_bound:
-                self.noisy_indices.extend(list(KFold(n_splits=self.num_splits).split(self.X))[i][1])
+                self.noisy_indices.extend(
+                    list(KFold(n_splits=self.num_splits).split(self.X))[i][1]
+                )
 
     def remove_noisy_data(self):
         if isinstance(self.X, pd.DataFrame):

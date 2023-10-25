@@ -25,12 +25,18 @@ def missing_value_impute(df_train, df_test=None):
 
     # Fill missing values in categorical columns with mode
     mode_values_train = df_merged[categorical_columns].mode().iloc[0]
-    df_train[categorical_columns] = df_train[categorical_columns].fillna(mode_values_train)
+    df_train[categorical_columns] = df_train[categorical_columns].fillna(
+        mode_values_train
+    )
 
     if df_test is not None:
         # Fill missing values in test DataFrame with mean of the training set for numerical columns
-        df_test[numerical_columns] = df_test[numerical_columns].fillna(mean_values_train)
-        df_test[categorical_columns] = df_test[categorical_columns].fillna(mode_values_train)
+        df_test[numerical_columns] = df_test[numerical_columns].fillna(
+            mean_values_train
+        )
+        df_test[categorical_columns] = df_test[categorical_columns].fillna(
+            mode_values_train
+        )
         return df_train, df_test
     else:
         return df_train

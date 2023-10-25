@@ -11,7 +11,7 @@ setup(
         "lightgbm",
         "scikit-learn",
     ],
-    author='Hengzhe Zhang',
-    author_email='hengzhe.zhang@ecs.vuw.ac.nz',
-    description='A machine learning toolbox',
+    author="Hengzhe Zhang",
+    author_email="hengzhe.zhang@ecs.vuw.ac.nz",
+    description="A machine learning toolbox",
 )

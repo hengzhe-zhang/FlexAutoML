@@ -17,11 +17,11 @@ def frequency_features(train_df: pd.DataFrame, test_df: pd.DataFrame = None):
         val_counts = combined_df[c].value_counts()
 
         # Create a new column with count-based features for train_df
-        train_df[c + '_count'] = train_df[c].map(val_counts)
+        train_df[c + "_count"] = train_df[c].map(val_counts)
 
         if test_df is not None:
             # Create the same features for test_df
-            test_df[c + '_count'] = test_df[c].map(val_counts)
+            test_df[c + "_count"] = test_df[c].map(val_counts)
 
     if test_df is not None:
         return train_df, test_df
